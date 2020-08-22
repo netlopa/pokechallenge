@@ -23,6 +23,13 @@ public class PokeExternalService {
 
     private static final Logger LOGGER = LogManager.getLogger();
     
+    /**
+     * This method is calling the PokeAPI WS to retrieve the phrase of the Pokemon
+     * @param pokemonName
+     * @return
+     * @throws PokemonNotFoundException
+     * @throws PokeApiWSException
+     */
     public String getPokemonSpeciesPhrase(String pokemonName) throws PokemonNotFoundException, PokeApiWSException {
 
         LOGGER.debug("Calling PokeAPI WS with " + pokemonName);
@@ -59,6 +66,13 @@ public class PokeExternalService {
     
     }
     
+    /**
+     * This method is calling the Funtranslations API to get the Shakespearean phrase given the original one
+     * @param phrase
+     * @return
+     * @throws ShakespeareApiWSException
+     * @throws ShakespeareApiRateLimitsExceededException
+     */
     public String getShakespeareanPhrase(String phrase) throws ShakespeareApiWSException, ShakespeareApiRateLimitsExceededException {
         LOGGER.debug("Calling Shakespeare API WS with " + phrase);
         String json = null;

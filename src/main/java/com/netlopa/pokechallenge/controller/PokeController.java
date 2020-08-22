@@ -9,6 +9,9 @@ import com.netlopa.pokechallenge.exceptions.ShakespeareApiRateLimitsExceededExce
 import com.netlopa.pokechallenge.exceptions.ShakespeareApiWSException;
 import com.netlopa.pokechallenge.service.PokeService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+
 import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
@@ -29,6 +32,11 @@ public class PokeController {
    
     private static final Logger LOGGER = LogManager.getLogger();
 
+    @ApiOperation(value = "Retrieve the Shakesperean Phrase of the provided Pokemon")
+    @ApiResponses(value = {
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Pokemon phrase"),
+        @io.swagger.annotations.ApiResponse(code = 400, message = "Pokemon Not Found")
+    })
 	@GetMapping(value = "/pokemon/{pokemonName}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
 	public PokeDto getPokemonShakespereanPhrase(@PathVariable String pokemonName) throws PokemonNotFoundException, PokeApiWSException, ShakespeareApiWSException, ShakespeareApiRateLimitsExceededException, IOException {
@@ -39,6 +47,10 @@ public class PokeController {
 		return dto;
 	}
 	
+    @ApiOperation(value = "Purge cache")
+    @ApiResponses(value = {
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Operation performed"),
+    })
 	@PostMapping(value = "/purgecache", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
 	public String purgeCache() {

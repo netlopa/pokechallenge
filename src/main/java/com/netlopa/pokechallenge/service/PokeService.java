@@ -13,7 +13,6 @@ import com.netlopa.pokechallenge.exceptions.PokemonNotFoundException;
 import com.netlopa.pokechallenge.exceptions.ShakespeareApiRateLimitsExceededException;
 import com.netlopa.pokechallenge.exceptions.ShakespeareApiWSException;
 
-
 @Service
 public class PokeService {
     
@@ -22,6 +21,15 @@ public class PokeService {
     @Autowired
     PokeExternalService pokeExternalService;
    
+    /**
+     * This method get the Shakesperean phrase, given a name of a Pokemon
+     * @param pokemonName
+     * @return
+     * @throws PokemonNotFoundException
+     * @throws PokeApiWSException
+     * @throws ShakespeareApiWSException
+     * @throws ShakespeareApiRateLimitsExceededException
+     */
     @Cacheable("pokemonPhrase")
     public PokeDto getPokemonShakespereanPhrase(String pokemonName) throws PokemonNotFoundException, PokeApiWSException, ShakespeareApiWSException, ShakespeareApiRateLimitsExceededException {
         

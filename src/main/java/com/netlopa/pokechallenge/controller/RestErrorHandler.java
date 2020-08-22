@@ -11,6 +11,11 @@ import com.netlopa.pokechallenge.exceptions.PokemonNotFoundException;
 import com.netlopa.pokechallenge.exceptions.ShakespeareApiRateLimitsExceededException;
 import com.netlopa.pokechallenge.exceptions.ShakespeareApiWSException;
 
+/**
+ * This class check the exceptions that are thrown in the application and give a human readable response to the end user
+ * @author lpavez
+ *
+ */
 @ControllerAdvice
 public class RestErrorHandler {
 

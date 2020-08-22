@@ -1,5 +1,10 @@
 package com.netlopa.pokechallenge.dto;
 
+/**
+ * DTO returned to the end user with the name and the shakesperean phrase
+ * @author lpavez
+ *
+ */
 public class PokeDto {
 
     private String name;
