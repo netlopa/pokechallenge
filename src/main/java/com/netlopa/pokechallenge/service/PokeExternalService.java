@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
@@ -23,6 +24,12 @@ public class PokeExternalService {
 
     private static final Logger LOGGER = LogManager.getLogger();
     
+    @Value("${pokeapi.url}")
+    private String pokeApiUrl;
+    
+    @Value("${funtranslations.url}")
+    private String funTranslationsApiUrl;
+    
     /**
      * This method is calling the PokeAPI WS to retrieve the phrase of the Pokemon
      * @param pokemonName
@@ -38,7 +45,7 @@ public class PokeExternalService {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
                   Request request = new Request.Builder()
-                    .url("https://pokeapi.co/api/v2/pokemon-species/" + pokemonName.toLowerCase())
+                    .url(pokeApiUrl + pokemonName.toLowerCase())
                     .method("GET", null)
                     .build();
                   Response response = client.newCall(request).execute();
@@ -80,7 +87,7 @@ public class PokeExternalService {
             OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
               Request request = new Request.Builder()
-                .url("https://api.funtranslations.com/translate/shakespeare.json?text=" + phrase)
+                .url(funTranslationsApiUrl + "?text=" + phrase)
                 .method("GET", null)
                 .build();
               Response response = client.newCall(request).execute();

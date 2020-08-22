@@ -24,7 +24,7 @@ public class PokeControllerTest {
 	private MockMvc mvc;
 
 	@Test
-	public void getHello() throws Exception {
+	public void testPokemonNotFound() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/pokemon/dummymon").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound());
 
