@@ -1,3 +1,4 @@
+
 # Pokemon Challenge
 
 ## Problem
@@ -27,12 +28,12 @@ With this API you purge the cache
 
 This project was made with Java 8 with the Spring Boot framework
 
-## How to run the program
+## How to run the application (standalone)
 
 1. Make sure you have Java 8 installed and properly configured
 2. Run the following command
 ```
-git clone TBD
+git clone https://github.com/netlopa/pokechallenge.git
 ```
 3. Inside the created folder you need to run 
 ```
@@ -42,7 +43,21 @@ mvn spring-boot:run
 ```
 curl http://localhost:8080/pokemon/pikachu
 ```
+## How to run the application with Docker
 
+1. Make sure you have Java 8 installed and properly configured and clone the project
+2. First of all you need to create the JAR package of the application: you need to go in the main folder of the project that you cloned and then execute this command
+```
+./mvnw package
+```
+3. Now, you need to create the Docker image, using this command
+```
+docker build -t netlopa/pokechallenge .
+```
+4. If you want to run the Docker image, run this command
+```
+docker run -p 8080:8080 -t netlopa/pokechallenge
+```
 ## Design choices
 
 This application connects to two APIs: PokeAPI and Shakespeare translator provided by funtranslations.
@@ -53,7 +68,7 @@ So I decided to add the cache support to the project in order to optimize the AP
 
 So it means that if I call the endpoint `http://localhost:8080/pokemon/pikachu` , the first time the application will perform all the needed API calls. From the second time and so on, for that Pokemon, the result will be retrieved from the application Cache.
 
-If you want to purge the cache, I added a utility API called purgecache that will delete all the cache.
+If you want to purge the cache, I added an utility API called purgecache that will delete all the cache.
    
 ## Useful links
 
